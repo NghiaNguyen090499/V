@@ -3,3 +3,5 @@ from .models import AuthenticationMethod, Poll, Choice
 admin.site.register(Poll)
 admin.site.register(Choice)
 admin.site.register(AuthenticationMethod)
+admin.site.register(ImageReview)
+
