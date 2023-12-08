@@ -36,7 +36,7 @@ class Choice(models.Model):
     poll = models.ForeignKey(Poll, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200 )
     votes = models.IntegerField(default=0)      
-    image_review = models.ForeignKey(ImageReview, on_delete=models.CASCADE)
+    image_review = models.ForeignKey(ImageReview, on_delete=models.CASCADE,default='None')
 
     def __str__(self):
         return self.choice_text
