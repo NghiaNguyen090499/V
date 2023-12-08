@@ -7,7 +7,6 @@ class Voting(models.Model):
     options = models.TextField()
     is_open = models.BooleanField(default=False)
 
-
 class AuthenticationMethod(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
@@ -29,7 +28,6 @@ class Poll(models.Model):
 
     def __str__(self):
         return self.question
-
 
 class ImageReview(models.Model):
     image = models.ImageField(upload_to='review_images/')
