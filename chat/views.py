@@ -46,14 +46,15 @@ def add_choice(request, question_id):
 def detail(request, poll_id):
     poll = get_object_or_404(Poll, pk=poll_id)
     total_votes = poll.choice_set.aggregate(Sum('votes'))['votes__sum']
+    print(total_votes)
     form = VoteForm(poll_id, request.POST)
-    
     if request.method == 'POST':
         form = VoteForm(poll_id, request.POST)
         if form.is_valid():
             choice_id = form.cleaned_data['choice']
             choice = get_object_or_404(Choice, pk=choice_id)
             choice.votes += 1
+
             choice.save()
             messages.success(request, "Thank you for voting!")
             return HttpResponse('Cám ơn bạn đã đánh giá')
@@ -99,7 +100,7 @@ def add_question_and_choices(request):
                         url = reverse('polling:poll_view',args=[question_instance.id])
                         print(url)
                         
-                        data = f"https://pollingarar-88a936a9c8bc.herokuapp.com/{url}"
+                        data = f"http://192.168.15.174:8000/{url}"
                         
                         img = make(data)
 
@@ -196,13 +197,16 @@ def rate(request):
 def option(request,poll_id):
     poll_instance = get_object_or_404(Poll, id=poll_id)
     authentication_methods = poll_instance.authentication_methods.all()
+    
     for method in authentication_methods:
         print(method.id)
+        poll_instance = Poll.objects.get(id=poll_id)
         if method.id == 1:
-            print('a')
             if request.method == 'POST' :
                 print(poll_id)
                 myfile = request.FILES['myfile']
+                review = ImageReview(image=myfile, question=poll_instance)
+                review.save()
                 print(myfile)
                 url=reverse('polling:detail',args=[poll_id])
                 print(url)
@@ -214,7 +218,7 @@ def option(request,poll_id):
         else:
             return render(request, 'chat/options.html', {'poll': poll_instance})
             
-            
+
             
     
 def present(request,pk):
@@ -223,7 +227,7 @@ def present(request,pk):
     context = {}
     url = reverse('polling:poll_view',args=[pk])
     print(url)
-    data = f"https://pollingarar-88a936a9c8bc.herokuapp.com{url}"
+    data = f"http://192.168.15.174:8000{url}"
     img = make(data)
 
     img_name = f'{pk}.png'
