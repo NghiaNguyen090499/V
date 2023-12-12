@@ -32,11 +32,12 @@ class Poll(models.Model):
 class ImageReview(models.Model):
     image = models.ImageField(upload_to='review_images/')
     question = models.ForeignKey(Poll, on_delete=models.CASCADE)
+    
 class Choice(models.Model):
     poll = models.ForeignKey(Poll, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200 )
     votes = models.IntegerField(default=0)      
-    image_review = models.ForeignKey(ImageReview, on_delete=models.CASCADE)
+    image_review = models.ForeignKey(ImageReview, on_delete=models.CASCADE,null=True,)
 
     def __str__(self):
         return self.choice_text

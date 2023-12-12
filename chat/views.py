@@ -94,7 +94,7 @@ def add_question_and_choices(request):
                     # Process and save the choices
                     for choice_form in choice_forms:
                         choice_text = choice_form.cleaned_data.get('choice_text', '')
-                        Choice.objects.create(choice_text=choice_text, poll=question_instance)
+                        Choice.objects.create(choice_text=choice_text, poll=question_instance,image_review='')
                         print(question_instance.id)
                         context = {}
                         url = reverse('polling:poll_view',args=[question_instance.id])

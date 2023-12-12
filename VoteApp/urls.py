@@ -27,6 +27,7 @@ urlpatterns = [
     path('', include("account.urls")),
     path('', include("administrator.urls")),
     path('', include("voting.urls")),
+    path('', include("noel.urls")),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
