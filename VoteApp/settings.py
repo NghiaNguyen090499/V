@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'voting.apps.VotingConfig',
     'administrator.apps.AdministratorConfig',
-    'noel'
+    'noel',
 ]
 
 ASGI_APPLICATION = "VoteApp.asgi.application"
