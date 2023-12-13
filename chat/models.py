@@ -28,19 +28,18 @@ class Poll(models.Model):
 
     def __str__(self):
         return self.question
+class Choice(models.Model):
+    poll = models.ForeignKey(Poll, on_delete=models.CASCADE)
+    choice_text = models.CharField(max_length=200)
+    votes = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.choice_text
 
 class ImageReview(models.Model):
     image = models.ImageField(upload_to='review_images/')
     question = models.ForeignKey(Poll, on_delete=models.CASCADE)
-    
-class Choice(models.Model):
-    poll = models.ForeignKey(Poll, on_delete=models.CASCADE)
-    choice_text = models.CharField(max_length=200 )
-    votes = models.IntegerField(default=0)      
-    image_review = models.ForeignKey(ImageReview, on_delete=models.CASCADE,null=True,)
+    choice = models.ForeignKey(Choice, on_delete=models.CASCADE, null=True, blank=True)
 
-    def __str__(self):
-        return self.choice_text
-    
     
 

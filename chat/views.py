@@ -44,9 +44,15 @@ def add_choice(request, question_id):
     return render(request, 'chat/add_choice.html', {'form': form, 'question': question})
 
 def detail(request, poll_id):
+    uploaded_image = request.session.get('myfile')
+    if not uploaded_image:
+        return redirect('upload_image')
+    
     poll = get_object_or_404(Poll, pk=poll_id)
+    image_review=ImageReview.objects.filter(question_id=poll_id)
+    for image in image_review:
+        print (image.id)
     total_votes = poll.choice_set.aggregate(Sum('votes'))['votes__sum']
-    print(total_votes)
     form = VoteForm(poll_id, request.POST)
     if request.method == 'POST':
         form = VoteForm(poll_id, request.POST)
@@ -54,8 +60,18 @@ def detail(request, poll_id):
             choice_id = form.cleaned_data['choice']
             choice = get_object_or_404(Choice, pk=choice_id)
             choice.votes += 1
+            temp_image = request.session.get('myfile')
+            if temp_image:
+                image_review = ImageReview.objects.create(
+                    question_id=poll_id,
+                    choice=choice,
+                    image=temp_image
+                )
 
+                # Xóa dữ liệu ảnh khỏi session sau khi đã sử dụng
+                del request.session['myfile']
             choice.save()
+          
             messages.success(request, "Thank you for voting!")
             return HttpResponse('Cám ơn bạn đã đánh giá')
     else:
@@ -94,7 +110,8 @@ def add_question_and_choices(request):
                     # Process and save the choices
                     for choice_form in choice_forms:
                         choice_text = choice_form.cleaned_data.get('choice_text', '')
-                        Choice.objects.create(choice_text=choice_text, poll=question_instance,image_review='')
+                        Choice.objects.create(choice_text=choice_text, poll=question_instance)
+            
                         print(question_instance.id)
                         context = {}
                         url = reverse('polling:poll_view',args=[question_instance.id])
@@ -197,20 +214,16 @@ def rate(request):
 def option(request,poll_id):
     poll_instance = get_object_or_404(Poll, id=poll_id)
     authentication_methods = poll_instance.authentication_methods.all()
-    
     for method in authentication_methods:
-        print(method.id)
         poll_instance = Poll.objects.get(id=poll_id)
         if method.id == 1:
             if request.method == 'POST' :
-                print(poll_id)
                 myfile = request.FILES['myfile']
-                review = ImageReview(image=myfile, question=poll_instance)
-                review.save()
+                request.session['myfile'] = myfile.name
                 print(myfile)
                 url=reverse('polling:detail',args=[poll_id])
                 print(url)
-                
+
                 return redirect(url)
             return render(request, 'chat/upload_cccd.html', {'poll': poll_instance})
         elif method.id == 2:
