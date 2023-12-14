@@ -45,7 +45,7 @@ def handle(request):
                     'name': row['name'],
                     'image': row['image'],
                     'public_day': row['public_day'],
-                    'subcategory_id': subcategory_id
+                    'subcategory_id': row['subcategory_id']
                 }
             )
     
