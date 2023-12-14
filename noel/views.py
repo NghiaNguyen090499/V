@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from noel.models import *
+from django.http import HttpResponse
+from VoteApp.settings import MEDIA_ROOT
 # Create your views here.
 def noel(request):
     content = SubCategory.objects.all()
@@ -29,18 +31,25 @@ from noel.models import SubCategory, Product
 # mycakes/management/commands/load_data.py
 
 
-def handle(self, *args, **options):
-    csv_file = 'noel_subcategory.csv'  # Đường dẫn đến file CSV của bạn
-
-    with open(csv_file, 'r') as file:
+def handle(request):
+    csv_file_path = MEDIA_ROOT + 'mycakes/noel_subcategory.csv'
+ 
+    with open(csv_file_path, 'r') as file:
         reader = csv.DictReader(file)
         for row in reader:
             subcategory, created = SubCategory.objects.get_or_create(
                 id=row['id'],
-                name=row['name'],
-                defaults={'image': row['image']}
+                defaults={'name': row['name'], 'image': row['image']}
             )
+    csv_file_prodct = MEDIA_ROOT + 'mycakes/noel_product.csv'
+ 
+    with open(csv_file_path, 'r') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            product, created = Product.objects.get_or_create(
+                subcategory=subcategory,
+                defaults={'name': row['name'], 'image': row['image']}
+            )
+            
 
-        
-
-    self.stdout.write(self.style.SUCCESS('Data loaded successfully'))
+    return HttpResponse('Data updated successfully!')
