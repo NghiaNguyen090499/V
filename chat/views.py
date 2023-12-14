@@ -309,7 +309,7 @@ def present(request,pk):
     context = {}
     url = reverse('polling:poll_view',args=[pk])
     print(url)
-    data = f"https://pollingarar-88a936a9c8bc.herokuapp.com/{url}"
+    data = f"https://pollingarar-88a936a9c8bc.herokuapp.com{url}"
     img = make(data)
 
     img_name = f'{pk}.png'
