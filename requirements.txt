@@ -24,7 +24,6 @@ idna==3.4
 incremental==22.10.0
 mysqlclient==2.2.0
 numpy==1.25.2
-opencv-python==4.8.1.78
 packaging==23.2
 Pillow==10.1.0
 psycopg2==2.9.9
