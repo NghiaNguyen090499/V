@@ -32,25 +32,30 @@ from noel.models import SubCategory, Product
 
 
 def handle(request):
-    csv_file_path = MEDIA_ROOT + 'mycakes/noel_subcategory.csv'
- 
-    with open(csv_file_path, 'r') as file:
-        reader = csv.DictReader(file)
-        for row in reader:
-            subcategory, created = SubCategory.objects.get_or_create(
-                id=row['id'],
-                defaults={'name': row['name'], 'image': row['image']}
-            )
-            
     csv_file_path = MEDIA_ROOT + 'mycakes/noel_product.csv'
  
     with open(csv_file_path, 'r') as file:
         reader = csv.DictReader(file)
+    
         for row in reader:
-            product, created = Product.objects.get_or_create(
-                subcategory=subcategory,
-                defaults={'name': row['name'], 'image': row['image']}
+            subcategory, created = SubCategory.objects.get_or_create(
+                id=row['subcategory_id'],
+                defaults={'name': row['subcategory_name'], 'image': row['subcategory_image']}
             )
+
+            product, created = Product.objects.get_or_create(
+                id=row['id'],
+                defaults={
+                    'name': row['name'],
+                    'image': row['image'],
+                    'public_day': row['public_day'],
+                    'subcategory': subcategory
+                }
+            )
+    
+        
             
 
     return HttpResponse('Data updated successfully!')
+
+
