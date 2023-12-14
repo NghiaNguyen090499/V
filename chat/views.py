@@ -123,7 +123,7 @@ def add_question_and_choices(request):
                         url = reverse('polling:poll_view',args=[question_instance.id])
                         print(url)
                         
-                        data = f"https://pollingarar-88a936a9c8bc.herokuapp.com/{url}"
+                        data = f"https://pollingarar-88a936a9c8bc.herokuapp.com{url}"
                         
                         img = make(data)
 
