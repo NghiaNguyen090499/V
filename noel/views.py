@@ -36,15 +36,16 @@ def handle(request):
  
     with open(csv_file_path, 'r') as file:
         reader = csv.DictReader(file)
-    
+        
         for row in reader:
+            subcategory_id = int(row['subcategory_id'])
             product, created = Product.objects.get_or_create(
                 id=row['id'],
                 defaults={
                     'name': row['name'],
                     'image': row['image'],
                     'public_day': row['public_day'],
-                    'subcategory': row['subcategory_id']
+                    'subcategory': subcategory_id
                 }
             )
     
