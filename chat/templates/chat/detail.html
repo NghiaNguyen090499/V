@@ -58,10 +58,27 @@ body {
     font-size:10pt;
     border-radius:4px;
   }
+  .button-link {
+    display: inline-block;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #007bff;  /* Màu nền của nút */
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.button-link:hover {
+    background-color: #0056b3;  /* Màu nền khi hover */
+}
+
 
 </style>
 
-
+{% if request.session.scan_data_1 %}
   <div class="poll">
     <h2>{{ poll.question }}</h2>
     <ul>
@@ -72,31 +89,16 @@ body {
       </form>
     </ul>
    
-    
   </div>
-  <!-- <form method="post" action="{% url 'polling:detail' poll.id %}">
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit">Vote</button>
-  </form> -->
-  {% if messages %}
-  <div class="messages">
-    <ul class="messages-list">
-      {% for message in messages %}
-      <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-      {% endfor %}
-    </ul>
-  </div>
+
+  {% else %}
+  <h2>KIỂM TRA LẠI THÔNG TIN </h2>
+  <a href="{% url 'polling:poll_view' poll.id %}" class="button-link">Quay lại</a>
   {% endif %}
-  <div id="votes-count">Total votes: <span id="total-votes">{{ total_votes }}</span></div>
-  {% comment %} <div id="vote-results">
-    <h3>Results:</h3>
-    <ul>
-      {% for choice in poll.choice_set.all %}
-        <li>{{ choice.choice_text }} - {{ choice.votes }} votes</li>
-      {% endfor %}
-    </ul>
-  </div> {% endcomment %}
+
+  
+
+
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
     function updatePollResults() {

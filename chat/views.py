@@ -13,7 +13,11 @@ import qrcode.image.svg
 from io import BytesIO
 from django.conf import settings
 from qrcode import make
-
+import subprocess
+import cv2
+from pyzbar.pyzbar import decode
+import numpy as np
+from datetime import datetime
 def index(request):
     latest_polls = Poll.objects.order_by('-pub_date')[:5]
     context = {'latest_polls': latest_polls}
@@ -46,7 +50,8 @@ def add_choice(request, question_id):
 def detail(request, poll_id):
     uploaded_image = request.session.get('myfile')
     if not uploaded_image:
-        return redirect('upload_image')
+        url = reverse('polling:poll_view',args=[poll_id])
+        redirect(url)
     
     poll = get_object_or_404(Poll, pk=poll_id)
     image_review=ImageReview.objects.filter(question_id=poll_id)
@@ -71,6 +76,7 @@ def detail(request, poll_id):
                 # Xóa dữ liệu ảnh khỏi session sau khi đã sử dụng
                 del request.session['myfile']
             choice.save()
+            del request.session['scan_data_1']
           
             messages.success(request, "Thank you for voting!")
             return HttpResponse('Cám ơn bạn đã đánh giá')
@@ -127,10 +133,10 @@ def add_question_and_choices(request):
                                 'img_name': img_name
                             }
                             
-                    return redirect('success_page')  # Redirect to a success page or any other page
+                    return redirect('polling:add_question_and_choices')  # Redirect to a success page or any other page
 
 
-            return redirect('success_page')  # Redirect to a success page or any other page
+            return redirect('polling:add_question_and_choices')  
 
         else:
             # Print errors for debugging
@@ -149,7 +155,6 @@ def add_question_and_choices(request):
 
 def view_poll_by_id(request):
     pollid = request.GET.get('id', None)
-    print(pollid)
     context = {}
     poll = Poll.objects.get(id=pollid)
     choices = Choice.objects.filter(poll_id=pollid)
@@ -212,20 +217,84 @@ def rate(request):
   
   
 def option(request,poll_id):
+    data_json_1=''
     poll_instance = get_object_or_404(Poll, id=poll_id)
     authentication_methods = poll_instance.authentication_methods.all()
     for method in authentication_methods:
         poll_instance = Poll.objects.get(id=poll_id)
         if method.id == 1:
             if request.method == 'POST' :
-                myfile = request.FILES['myfile']
-                request.session['myfile'] = myfile.name
-                print(myfile)
-                url=reverse('polling:detail',args=[poll_id])
-                print(url)
+                try:
+                    myfile = request.FILES['myfile']
+                    nparr = np.frombuffer(myfile.read(), np.uint8)
+                    image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 
-                return redirect(url)
-            return render(request, 'chat/upload_cccd.html', {'poll': poll_instance})
+        # Bước 2: Tăng kích thước ảnh (thay đổi độ phân giải) để làm cho mã QR lớn hơn
+                    scale_percent = 200  # Tăng 200% kích thước, bạn có thể thay đổi giá trị này
+                    width = int(image.shape[1] * scale_percent / 100)
+                    height = int(image.shape[0] * scale_percent / 100)
+                    resized_image = cv2.resize(image, (width, height), interpolation=cv2.INTER_AREA)
+            
+                    # Bước 3: Chuyển đổi ảnh sang ảnh đen trắng (ảnh nhị phân)
+                    gray = cv2.cvtColor(resized_image, cv2.COLOR_BGR2GRAY)
+                    _, binary_image = cv2.threshold(gray, 128, 255, cv2.THRESH_BINARY)
+
+                    # Bước 4: Sử dụng thư viện pyzbar để giải mã mã QR code từ ảnh đen trắng
+                    decoded_objects = decode(binary_image)
+
+                    # Bước 5: In ra kết quả giải mã
+                    for obj in decoded_objects:
+                        data = obj.data.decode('utf-8')
+                        print(f'Mã QR trên căn cước công dân chứa dữ liệu: {data}')
+                        thong_tin = data
+                        
+                except:
+                    myfile = ''
+                if thong_tin:
+          
+                    thong_tin = thong_tin.rstrip()
+                    # cut "\r\n" at last of string
+                    thong_tin=thong_tin.replace('|',"*")
+                    
+                    thong_tin=thong_tin.split('*')
+                    so_cccd = thong_tin[0]
+                    so_cccd_cu = thong_tin[1]
+                    ho_va_ten = thong_tin[2].upper()
+                    ngay_sinh = thong_tin[3]
+                    ngay_sinh= datetime.strptime(ngay_sinh, "%d%m%Y")
+                    ngay_sinh = datetime.strftime(ngay_sinh, "%d/%m/%Y")
+                    
+                    gioi_tinh = thong_tin[4]
+                    dia_chi = thong_tin[5]
+                    ngay_cap = thong_tin[6]
+                    ngay_cap= datetime.strptime(ngay_cap, "%d%m%Y")
+                    ngay_cap = datetime.strftime(ngay_cap, "%d/%m/%Y")
+                    thanh_pho = dia_chi.replace('\x00','').split(',')
+                    thanh_pho_chuan=thanh_pho[-1]
+                    thoi_gian = datetime.now()
+                    thoi_gian= thoi_gian.strftime("%d/%m/%Y %H:%M")
+                    
+
+                    data_json_1 = {
+                    'so_cccd': so_cccd.replace('\x00',''),
+                    'so_cmnd_cu' : so_cccd_cu.replace('\x00',''),
+                    'ho_va_ten':ho_va_ten,
+                    'ngay_sinh': ngay_sinh,
+                    'gioi_tinh':gioi_tinh.replace('\x00',''),
+                    'dia_chi': dia_chi.replace('\x00',''),
+                    'ngay_cap':ngay_cap.replace('\x00',''),
+                    'thanh_pho': thanh_pho_chuan.replace('\x00','')
+                    
+                    }
+            
+                request.session['scan_data_1'] = data_json_1
+                request.session['myfile'] = myfile.name
+                # print(myfile)
+                # url=reverse('polling:detail',args=[poll_id])
+                # print(url)
+                
+                # return redirect(url)
+            return render(request, 'chat/upload_cccd.html', {'poll': poll_instance,'data_1':data_json_1,})
         elif method.id == 2:
             return render(request, 'chat/input_id.html', {'poll': poll_instance})
         else:
