@@ -38,18 +38,13 @@ def handle(request):
         reader = csv.DictReader(file)
     
         for row in reader:
-            subcategory, created = SubCategory.objects.get_or_create(
-                id=row['subcategory_id'],
-                defaults={'name': row['subcategory_name'], 'image': row['subcategory_image']}
-            )
-
             product, created = Product.objects.get_or_create(
                 id=row['id'],
                 defaults={
                     'name': row['name'],
                     'image': row['image'],
                     'public_day': row['public_day'],
-                    'subcategory': subcategory
+                    'subcategory': row['subcategory_id']
                 }
             )
     
