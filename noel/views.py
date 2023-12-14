@@ -21,3 +21,26 @@ def detail(request, pk):
         'subcategory_name': subcategory_name,
     })
     
+
+import csv
+from django.core.management.base import BaseCommand
+from noel.models import SubCategory, Product
+
+# mycakes/management/commands/load_data.py
+
+
+def handle(self, *args, **options):
+    csv_file = 'noel_subcategory.csv'  # Đường dẫn đến file CSV của bạn
+
+    with open(csv_file, 'r') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            subcategory, created = SubCategory.objects.get_or_create(
+                id=row['id'],
+                name=row['name'],
+                defaults={'image': row['image']}
+            )
+
+        
+
+    self.stdout.write(self.style.SUCCESS('Data loaded successfully'))
