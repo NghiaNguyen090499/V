@@ -8,12 +8,14 @@ from datetime import datetime
 # Create your views here.
 
 def noel(request):
-    content = SubCategory.objects.all()
+    content = SubCategory.objects.filter(id__lt=SubCategory.objects.last().id)
+
+    print(content)
     message=''
     if request.method == 'POST' :
         text = request.POST.get('love')
         print(text)
-        SubCategory.objects.create(name=text, image='none')
+        Text.objects.create(name=text)
         message='Anh nhận được rồi, cám ơn bé nhá'
     return render(request, "noel/index.html",{ 'content':content,'message':message})
 
