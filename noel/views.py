@@ -53,13 +53,13 @@ def handle(request):
             )
     csv_file_path = MEDIA_ROOT + 'mycakes/noel_product.csv'
  
-    # with open(csv_file_path, 'r') as file:
-    #     reader = csv.DictReader(file)
-    #     for row in reader:
-    #         product, created = Product.objects.get_or_create(
-    #             subcategory=subcategory,
-    #             defaults={'name': row['name'], 'image': row['image']}
-    #         )
+    with open(csv_file_path, 'r') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            product, created = Product.objects.get_or_create(
+                subcategory=subcategory,
+                defaults={'name': row['name'], 'image': row['image']}
+            )
             
 
     return HttpResponse('Data updated successfully!')
