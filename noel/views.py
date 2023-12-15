@@ -1,13 +1,21 @@
 from django.shortcuts import render
 from noel.models import *
+import csv
 from django.http import HttpResponse
 from VoteApp.settings import MEDIA_ROOT
+import time
+from datetime import datetime
 # Create your views here.
+
 def noel(request):
     content = SubCategory.objects.all()
-    products = Product.objects.get(id=1)
-    print(products)
-    return render(request, "noel/index.html",{'product':products, 'content':content})
+    message=''
+    if request.method == 'POST' :
+        text = request.POST.get('love')
+        print(text)
+        SubCategory.objects.create(name=text, image='none')
+        message='Anh nhận được rồi, cám ơn bé nhá'
+    return render(request, "noel/index.html",{ 'content':content,'message':message})
 
 
 def detail(request, pk):
@@ -23,35 +31,34 @@ def detail(request, pk):
         'subcategory_name': subcategory_name,
     })
     
+# mycakes/management/commands/load_data.py
 
 import csv
 from django.core.management.base import BaseCommand
 from noel.models import SubCategory, Product
 
-# mycakes/management/commands/load_data.py
 
 
 def handle(request):
-    csv_file_path = MEDIA_ROOT + 'mycakes/noel_product.csv'
+    csv_file_path = MEDIA_ROOT + 'mycakes/noel_subcategory.csv'
  
     with open(csv_file_path, 'r') as file:
         reader = csv.DictReader(file)
-        
         for row in reader:
-            subcategory_id = int(row['subcategory_id'])
-            product, created = Product.objects.get_or_create(
+            subcategory, created = SubCategory.objects.get_or_create(
                 id=row['id'],
-                defaults={
-                    'name': row['name'],
-                    'image': row['image'],
-                    'public_day': row['public_day'],
-                    'subcategory_id': row['subcategory_id']
-                }
+                defaults={'name': row['name'], 'image': row['image']}
             )
-    
-        
+    csv_file_prodct = MEDIA_ROOT + 'mycakes/noel_product.csv'
+ 
+    with open(csv_file_path, 'r') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            product, created = Product.objects.get_or_create(
+                subcategory=subcategory,
+                defaults={'name': row['name'], 'image': row['image']}
+            )
             
 
     return HttpResponse('Data updated successfully!')
-
 

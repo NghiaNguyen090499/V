@@ -1,221 +1,247 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en"><!-- Basic -->
+
 <head>
 	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
-   
-    <!-- Mobile Metas -->
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
- 
-     <!-- Site Metas -->
-    <title>Christmas - Responsive HTML5 Template</title>  
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="author" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <!-- Site Icons -->
-    <link rel="shortcut icon" href="#" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="#" />
+	<!-- Mobile Metas -->
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <!-- Pogo Slider CSS -->
-    <link rel="stylesheet" href="{% static 'css/pogo-slider.min.css' %}">
+	<!-- Site Metas -->
+	<title>Christmas - Responsive HTML5 Template</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<!-- Site Icons -->
+	<link rel="shortcut icon" href="#" type="image/x-icon" />
+	<link rel="apple-touch-icon" href="#" />
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<!-- Pogo Slider CSS -->
+	<link rel="stylesheet" href="{% static 'css/pogo-slider.min.css' %}">
 	<!-- Site CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">    
-    <!-- Responsive CSS -->
-    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<!-- Responsive CSS -->
+	<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="{% static 'css/custom.css' %}">
 
 
-      <!-- <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<!-- <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> -->
 
 
 </head>
 <style>
+	.btn-whimsical {
+		display: inline-block;
+		padding: 10px 20px;
+		font-size: 16px;
+		border: none;
+		border-radius: 50px;
+		background-color: #ff6f69;
+		color: #ffffff;
+		box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+		transition: transform 0.3s, box-shadow 0.3s;
+	  }
+	  
+	  .btn-whimsical:hover {
+		transform: rotate(-10deg) scale(1.1);
+		box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+	  }
+	  
+	  .btn-whimsical:active {
+		transform: rotate(0) scale(1);
+		box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+	  }
+</style>
+<style>
 	body {
-		
+
 		background-color: #fcb592;
-	  }
-	  
-	  input#open {
+	}
+
+	input#open {
 		display: none;
-	  }
-	  
-	  .christmas-card {
+	}
+
+	.christmas-card {
+		margin-left: 180px;
 		position: relative;
 		width: 200px;
-		height:300px;
+		height: 300px;
 		transform-style: preserve-3d;
 		transform: perspective(2500px);
 		transition: 3s;
-	  }
-	  
-	  .card-front {
+	}
+
+	.card-front {
 		position: relative;
 		background-color: #fff;
 		width: 200px;
-		height:300px;
+		height: 300px;
 		overflow: hidden;
 		transform-origin: left;
-		box-shadow: inset 100px 20px 100px rgba(0,0,0,.13), 30px 0 50px rgba(0,0,0,0.1);
+		box-shadow: inset 100px 20px 100px rgba(0, 0, 0, .13), 30px 0 50px rgba(0, 0, 0, 0.1);
 		transition: .3s;
-	  }
-	  
-	  .card-front:before {
-		content:"";
+	}
+
+	.card-front:before {
+		content: "";
 		position: absolute;
 		width: 180px;
 		height: 280px;
 		background-color: #c94038;
 		top: 10px;
 		left: 10px;
-	  }
-	  
-	  .christmas-tree {
+	}
+
+	.christmas-tree {
 		position: absolute;
-		width:0;
-		height:0;
+		width: 0;
+		height: 0;
 		border-right: 50px solid transparent;
 		border-left: 50px solid transparent;
 		border-bottom: 160px solid #034247;
 		top: 75px;
-		left:50px;
-	  }
-	  
-	  .christmas-tree:after {
-		content:"";
+		left: 50px;
+	}
+
+	.christmas-tree:after {
+		content: "";
 		position: absolute;
 		width: 100px;
 		height: 25px;
 		background-color: #c47f1a;
-		left:-50px;
-		top:140px;
-	  }
-	  
-	  .christmas-tree:before {
-		content:"";
+		left: -50px;
+		top: 140px;
+	}
+
+	.christmas-tree:before {
+		content: "";
 		position: absolute;
 		background-color: #a86d16;
-		width:50px;
+		width: 50px;
 		height: 25px;
-		top:130px;
-		left:20px;
+		top: 130px;
+		left: 20px;
 		box-shadow: -90px 0 #a86d16;
-	  }
-	  
-	  .card-inside {
+	}
+
+	.card-inside {
 		position: absolute;
 		background-color: #fff;
 		width: 200px;
-		height:300px;
-		z-index:-1;
-		left:0;
-		top:0;
-		box-shadow: inset 100px 20px 100px rgba(0,0,0,0.2);
-	  }
-	  
-	  .card-inside:before {
-		content:"";
+		height: 300px;
+		z-index: -1;
+		left: 0;
+		top: 0;
+		box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2);
+	}
+
+	.card-inside:before {
+		content: "";
 		position: absolute;
 		width: 180px;
 		height: 280px;
 		background-color: #c94038;
 		top: 10px;
 		left: 10px;
-	  }
-	  
-	  .open {
+	}
+
+	.open {
 		position: absolute;
 		width: 200px;
-		height:300px;
-		left:0;
-		top:0;
+		height: 300px;
+		left: 0;
+		top: 0;
 		background-color: transparent;
-		z-index:6;
+		z-index: 6;
 		cursor: pointer;
-	  }
-	  
-	  #open:checked ~ .card-front {
+	}
+
+	#open:checked~.card-front {
 		transform: rotateY(-155deg);
-		box-shadow: inset 100px 20px 100px rgba(0,0,0,.13), 30px 0 50px rgba(0,0,0,0.1);
-	  }
-	  
-	  #open:checked ~ .card-front:before {
-		z-index:5;
-	  }
-	  
-	  
-	  .text {
+		box-shadow: inset 100px 20px 100px rgba(0, 0, 0, .13), 30px 0 50px rgba(0, 0, 0, 0.1);
+	}
+
+	#open:checked~.card-front:before {
+		z-index: 5;
+	}
+
+
+	.text {
 		position: absolute;
 		color: white;
 		font-family: brush script mt;
-		top:260px;
-		width:200px;
+		top: 260px;
+		width: 200px;
 		text-align: center;
-		font-size:15px;
-	  }
-	  
-	  .text:before {
-		content:"Merry Christmas!";
+		font-size: 15px;
+	}
+
+	.text:before {
+		content: "Merry Christmas!";
 		position: absolute;
-		width:80px;
+		width: 80px;
 		color: #333;
 		text-align: center;
 		line-height: 10px;
-		top:-42.5px;
-		left:61px;
-	  }
-	  
-	  .text:after {
-		content:"";
+		top: -42.5px;
+		left: 61px;
+	}
+
+	.text:after {
+		content: "";
 		position: absolute;
-		width:0;
-		height:0;
+		width: 0;
+		height: 0;
 		border-right: 7px solid transparent;
 		border-left: 7px solid transparent;
 		border-bottom: 20px solid #faa307;
-		top:-185px;
-		left:93px;
-	  }
-	  
-	  .ribbon, .ribbon:before {
+		top: -185px;
+		left: 93px;
+	}
+
+	.ribbon,
+	.ribbon:before {
 		position: absolute;
-		width:0;
-		height:0;
+		width: 0;
+		height: 0;
 		border-bottom: 12.5px solid transparent;
 		border-top: 12.5px solid transparent;
-	  }
-	  
-	  .ribbon {
+	}
+
+	.ribbon {
 		border-left: 10px solid #c94038;
-		top:205px;
-		left:30px;
-	  }
-	  
-	  .ribbon:before {
-		content:"";
+		top: 205px;
+		left: 30px;
+	}
+
+	.ribbon:before {
+		content: "";
 		border-right: 10px solid #c94038;
 		left: 120px;
-		top:-12.5px;
-	  }
-	  
-	  .ribbon:after {
-		content:"";
+		top: -12.5px;
+	}
+
+	.ribbon:after {
+		content: "";
 		position: absolute;
 		width: 5px;
 		height: 5px;
-		border-radius:50%;
+		border-radius: 50%;
 		background-color: white;
-		top:-25px;
-		left:21.5px;
+		top: -25px;
+		left: 21.5px;
 		box-shadow: 5px -3px white, 10px -6px white, 15px -9px white, 20px -12px white, 25px -15px white, 30px -18px white, 35px -21px white, 40px -24px white, 45px -27px white, 50px -30px white, 55px -33px white, 60px -36px white, 60px -36px white, 15px -50px white, 20px -53px white, 25px -56px white, 30px -59px white, 35px -62px white, 40px -65px white, 45px -68px white, 50px -71px white;
-	  }
-	  
-	  .star {
+	}
+
+	.star {
 		position: absolute;
 		display: block;
 		width: 0px;
@@ -224,428 +250,545 @@
 		border-bottom: 13px solid #ffba08;
 		border-left: 20px solid transparent;
 		transform: rotate(-35deg);
-		top:68px;
-		left:80px;
-		  }
-	  
-	  .star:before {
-			border-bottom: 13px solid #ffba08;
-			border-left: 5px solid transparent;
-			border-right: 5px solid transparent;
-			position: absolute;
-			height: 0;
-			width: 0;
-			top: -9px;
-			left: -11px;
-			display: block;
-			content: '';
-			transform: rotate(-35deg);
-		  }
-	  
-	  .star:after {
-			position: absolute;
-			display: block;
-			top: 0.75px;
-			left: -20px;
-			width: 0px;
-			height: 0px;
-			border-right: 20px solid transparent;
-			border-bottom: 13px solid #ffba08;
-			border-left: 20px solid transparent;
-			transform: rotate(-70deg);
-			content:'';
-	  }
-	  
-	  .balls {
+		top: 68px;
+		left: 80px;
+	}
+
+	.star:before {
+		border-bottom: 13px solid #ffba08;
+		border-left: 5px solid transparent;
+		border-right: 5px solid transparent;
 		position: absolute;
-		width:12px;
+		height: 0;
+		width: 0;
+		top: -9px;
+		left: -11px;
+		display: block;
+		content: '';
+		transform: rotate(-35deg);
+	}
+
+	.star:after {
+		position: absolute;
+		display: block;
+		top: 0.75px;
+		left: -20px;
+		width: 0px;
+		height: 0px;
+		border-right: 20px solid transparent;
+		border-bottom: 13px solid #ffba08;
+		border-left: 20px solid transparent;
+		transform: rotate(-70deg);
+		content: '';
+	}
+
+	.balls {
+		position: absolute;
+		width: 12px;
 		height: 12px;
 		border-radius: 50%;
 		background-color: #c94038;
-		top:185px;
-		left:110px;
+		top: 185px;
+		left: 110px;
 		box-shadow: -30px -30px #c94038, -18px -74px #c94038;
-	  }
-	  
-	  .balls:before {
-		content:"";
+	}
+
+	.balls:before {
+		content: "";
 		position: absolute;
 		border-radius: 50%;
 		widtH: 10px;
 		height: 10px;
 		background-color: #f6b4b8;
-		left:-20px;
-		top:10px;
+		left: -20px;
+		top: 10px;
 		box-shadow: 15px -55px #f6b4b8;
-	  }
-	  
-	  .title {
+	}
+
+	.title {
 		position: absolute;
 		color: #333;
-		font-size:30px;
+		font-size: 30px;
 		font-family: brush script mt;
 		line-height: 25px;
 		text-align: center;
-		top:45px;
-		width:200px;
-	  }
-	  
-	  .wishes {
+		top: 45px;
+		width: 200px;
+	}
+
+	.wishes {
 		position: absolute;
 		width: 150px;
 		text-align: center;
-		font-family: brush script mt;
-		line-height:15px;
+		font-family: 'Times New Roman', Times, serif;
+		line-height: 15px;
 		font-size: 20px;
 		color: #333;
-		height: 300px;
-		top: 45%;
-		left:25px;
-	  }
-	  
-	  .gift {
+		height: 600px;
+		top: 15%;
+		left: 25px;
+	}
+
+	.gift {
 		position: absolute;
+		margin-top: 20px;
 		border: 3px solid #333;
-		width:30px;
+		width: 30px;
 		height: 30px;
 		top: 235px;
-		left:83px;
-	  }
-	  
-	  .gift:before, .gift:after {
-		content:"";
+		left: 83px;
+	}
+
+	.gift:before,
+	.gift:after {
+		content: "";
 		position: absolute;
 		background-color: #333;
-	  }
-	  
-	  .gift:before {
-		width:30px;
-		height:3px;
-		top:14px;
-	  }
-	  
-	  .gift:after {
-		height:30px;
-		width:3px;
+	}
+
+	.gift:before {
+		width: 30px;
+		height: 3px;
+		top: 14px;
+	}
+
+	.gift:after {
+		height: 30px;
+		width: 3px;
 		left: 14px;
-	  }
-	  
-	  .bow {
+	}
+
+	.bow {
 		position: absolute;
-	  }
-	  
-	  .bow:before, .bow:after {
-		content:"";
+	}
+
+	.bow:before,
+	.bow:after {
+		content: "";
 		position: absolute;
 		width: 7px;
 		height: 7px;
 		border: 3px solid #333;
-		border-radius:50%;
-		top:-14px;
-	  }
-	  
-	  .bow:before {
+		border-radius: 50%;
+		top: -14px;
+	}
+
+	.bow:before {
 		transform: skew(20deg, 10deg);
-		left:2px;
+		left: 2px;
+	}
+
+	.bow:after {
+		transform: skew(-20deg, -10deg);
+		left: 15px;
+	}
+</style>
+
+<style>
+	input#open-1 {
+		display: none;
+	}
+
+	.christmas-card-1 {
+		margin-left: 180px;
+		position: relative;
+		width: 200px;
+		height: 300px;
+		transform-style: preserve-3d;
+		transform: perspective(2500px);
+		transition: 3s;
+	}
+
+	.card-front-1 {
+		position: relative;
+		background-color: #fff;
+		width: 200px;
+		height: 300px;
+		overflow: hidden;
+		transform-origin: left;
+		box-shadow: inset 100px 20px 100px rgba(0, 0, 0, .13), 30px 0 50px rgba(0, 0, 0, 0.1);
+		transition: .3s;
+	}
+
+	.card-front-1:before {
+		content: "";
+		position: absolute;
+		width: 180px;
+		height: 280px;
+		background-color: #c94038;
+		top: 10px;
+		left: 10px;
+	}
+
+	.christmas-tree-1 {
+		position: absolute;
+		width: 0;
+		height: 0;
+		border-right: 50px solid transparent;
+		border-left: 50px solid transparent;
+		border-bottom: 160px solid #034247;
+		top: 75px;
+		left: 50px;
+	}
+
+	.christmas-tree-1:after {
+		content: "";
+		position: absolute;
+		width: 100px;
+		height: 25px;
+		background-color: #c47f1a;
+		left: -50px;
+		top: 140px;
+	}
+
+	.christmas-tree-1:before {
+		content: "";
+		position: absolute;
+		background-color: #a86d16;
+		width: 50px;
+		height: 25px;
+		top: 130px;
+		left: 20px;
+		box-shadow: -90px 0 #a86d16;
+	}
+
+
+
+	.card-inside-1:before {
+		content: "";
+		position: absolute;
+		width: 180px;
+		height: 280px;
+		background-color: #c94038;
+		top: 10px;
+		left: 10px;
+	}
+
+	.open-1 {
+		position: absolute;
+		width: 200px;
+		height: 300px;
+		left: 0;
+		top: 0;
+		background-color: transparent;
+		z-index: 6;
+		cursor: pointer;
+	}
+
+	#open-1:checked~.card-front-1 {
+		transform: rotateY(-155deg);
+		box-shadow: inset 100px 20px 100px rgba(0, 0, 0, .13), 30px 0 50px rgba(0, 0, 0, 0.1);
+	}
+
+	#open-1:checked~.card-front-1:before {
+		z-index: 5;
+	}
+
+
+	.text-1 {
+		position: absolute;
+		color: white;
+		font-family: 'Times New Roman', Times, serif;
+		top: 260px;
+		width: 200px;
+		text-align: center;
+		font-size: 15px;
+	}
+
+	.text-1:before {
+		content: "Merry Christmas!";
+		position: absolute;
+		width: 80px;
+		color: #333;
+		text-align: center;
+		line-height: 10px;
+		top: -42.5px;
+		left: 61px;
+	}
+
+	.text-1:after {
+		content: "";
+		position: absolute;
+		width: 0;
+		height: 0;
+		border-right: 7px solid transparent;
+		border-left: 7px solid transparent;
+		border-bottom: 20px solid #faa307;
+		top: -185px;
+		left: 93px;
+	}
+
+	.ribbon-1,
+	.ribbon-1:before {
+		position: absolute;
+		width: 0;
+		height: 0;
+		border-bottom: 12.5px solid transparent;
+		border-top: 12.5px solid transparent;
+	}
+
+	.ribbon-1 {
+		border-left: 10px solid #c94038;
+		top: 205px;
+		left: 30px;
+	}
+
+	.ribbon-1:before {
+		content: "";
+		border-right: 10px solid #c94038;
+		left: 120px;
+		top: -12.5px;
+	}
+
+	.ribbon-1:after {
+		content: "";
+		position: absolute;
+		width: 5px;
+		height: 5px;
+		border-radius: 50%;
+		background-color: white;
+		top: -25px;
+		left: 21.5px;
+		box-shadow: 5px -3px white, 10px -6px white, 15px -9px white, 20px -12px white, 25px -15px white, 30px -18px white, 35px -21px white, 40px -24px white, 45px -27px white, 50px -30px white, 55px -33px white, 60px -36px white, 60px -36px white, 15px -50px white, 20px -53px white, 25px -56px white, 30px -59px white, 35px -62px white, 40px -65px white, 45px -68px white, 50px -71px white;
+	}
+
+	.star-1 {
+		position: absolute;
+		display: block;
+		width: 0px;
+		height: 0px;
+		border-right: 20px solid transparent;
+		border-bottom: 13px solid #ffba08;
+		border-left: 20px solid transparent;
+		transform: rotate(-35deg);
+		top: 68px;
+		left: 80px;
+	}
+
+	.star-1:before {
+		border-bottom: 13px solid #ffba08;
+		border-left: 5px solid transparent;
+		border-right: 5px solid transparent;
+		position: absolute;
+		height: 0;
+		width: 0;
+		top: -9px;
+		left: -11px;
+		display: block;
+		content: '';
+		transform: rotate(-35deg);
+	}
+
+	.star-1:after {
+		position: absolute;
+		display: block;
+		top: 0.75px;
+		left: -20px;
+		width: 0px;
+		height: 0px;
+		border-right: 20px solid transparent;
+		border-bottom: 13px solid #ffba08;
+		border-left: 20px solid transparent;
+		transform: rotate(-70deg);
+		content: '';
+	}
+
+	.balls-1 {
+		position: absolute;
+		width: 12px;
+		height: 12px;
+		border-radius: 50%;
+		background-color: #c94038;
+		top: 185px;
+		left: 110px;
+		box-shadow: -30px -30px #c94038, -18px -74px #c94038;
+	}
+
+	.balls-1:before {
+		content: "";
+		position: absolute;
+		border-radius: 50%;
+		widtH: 10px;
+		height: 10px;
+		background-color: #f6b4b8;
+		left: -20px;
+		top: 10px;
+		box-shadow: 15px -55px #f6b4b8;
+	}
+
+	.title-1 {
+		position: absolute;
+		color: #333;
+		font-size: 30px;
+		font-family: brush script mt;
+		line-height: 25px;
+		text-align: center;
+		top: 45px;
+		width: 200px;
+	}
+
+	.wishes-1 {
+		position: absolute;
+		width: 150px;
+		text-align: center;
+		font-family:'Times New Roman', Times, serif;
+		line-height: 15px;
+		font-size: 20px;
+		color: #333;
+		height: 600px;
+		top: 15%;
+		left: 25px;
+	}
+
+	.gift-1 {
+		position: absolute;
+		border: 3px solid #333;
+		width: 30px;
+		height: 30px;
+		top: 235px;
+		left: 83px;
+	}
+
+	.gift-1:before,
+	.gift-1:after {
+		content: "";
+		position: absolute;
+		background-color: #333;
+	}
+
+	.gift-1:before {
+		width: 30px;
+		height: 3px;
+		top: 14px;
+	}
+
+	.gift-1:after {
+		height: 30px;
+		width: 3px;
+		left: 14px;
+	}
+
+	.bow-1 {
+		position: absolute;
+	}
+
+	.bow-1:before,
+	.bow-1:after {
+		content: "";
+		position: absolute;
+		width: 7px;
+		height: 7px;
+		border: 3px solid #333;
+		border-radius: 50%;
+		top: -14px;
+	}
+
+	.bow-1:before {
+		transform: skew(20deg, 10deg);
+		left: 2px;
+	}
+
+	.bow-1:after {
+		transform: skew(-20deg, -10deg);
+		left: 15px;
+	}
+
+	.card-inside-1 {
+		position: absolute;
+		background-color: #fff;
+		width: 200px;
+		height: 300px;
+		z-index: -1;
+		left: 0;
+		top: 0;
+		box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2);
+	
+		/* Thêm đoạn này để mặc định là đóng */
+	}
+
+	#open-1:checked~.card-inside-1 {
+		transform: rotateY(0deg);
+	}
+
+	.wishes-1 textarea {
+		width: 100%;
+		box-sizing: border-box;
+		/* Đảm bảo rằng kích thước tổng bao gồm cả padding và border */
+		resize: none;
+		/* Ngăn chặn người dùng thay đổi kích thước của textarea */
+		height: 40%;
+		/* Kích thước theo chiều cao của phần .wishes-1 */
+		padding: 10px;
+		/* Thêm padding nếu cần thiết */
+		pointer-events: auto;
+	}
+	.wishes textarea {
+		width: 100%;
+		box-sizing: border-box;
+		/* Đảm bảo rằng kích thước tổng bao gồm cả padding và border */
+		resize: none;
+		/* Ngăn chặn người dùng thay đổi kích thước của textarea */
+		height: 40%;
+		/* Kích thước theo chiều cao của phần .wishes-1 */
+		padding: 10px;
+		/* Thêm padding nếu cần thiết */
+		pointer-events: auto;
+	}
+</style>
+<style>
+	.gift-button {
+		padding: 15px 20px;
+		background-color: #5d8bc6;
+		border: none;
+		border-radius: 50px;
 	  }
 	  
-	  .bow:after {
-		transform: skew(-20deg,-10deg);
-		left:15px;
+	  .gift-button:hover {
+		background-color: #3bc8db;
+		border: none;
+	  }
+	  
+	  .gift-button a {
+		color: white;
+		font-size: 16px;
+		text-decoration:none;
+		text-align: center;
 	  }
 </style>
+
 <body id="home" data-spy="scroll" data-target="#navbar-wd" data-offset="98">
 
 	<!-- LOADER -->
-    <div id="preloader">
+	<div id="preloader">
 		<div class="loader">
 			<div class="box"></div>
 			<div class="box"></div>
 		</div>
-    </div><!-- end loader -->
-    <!-- END LOADER -->
-	
-
-	
-	<!-- Start header -->
-	<!-- <header class="top-header">
-		<nav class="navbar navbar-expand-lg navbar-light">
-			<div class="container">
-				<a class="navbar-brand" href="index.html"><img src="{% static 'images/logo.png' %}" alt="image"></a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-wd" aria-controls="navbar-wd" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse justify-content-end" id="navbar-wd">
-					<ul class="navbar-nav">
-						<li class="nav-item active"><a class="nav-link" href="#home">Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="#wish">Wish</a></li>
-						<li class="nav-item"><a class="nav-link" href="#b-deals">Best deals</a></li>
-						<li class="nav-item"><a class="nav-link" href="#donate">Donate</a></li>
-						<li class="nav-item"><a class="nav-link" href="#testi">Testimonial</a></li>
-						<li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-	</header> -->
+	</div><!-- end loader -->
+	<!-- END LOADER -->
 
 
-	<!-- <header>
-		<style>
-			.navbar {
-				opacity: 0.8;
-				margin-bottom: 0;
-				background-color: #fff;
-				transition: all 0.2s ease-out;
-			  }
-			  
-			  .navbar-container {
-				  position: relative;
-			  }
-			  
-			  .navbar .navbar-nav li a {
-				font-size: 14px;
-				text-transform: uppercase;
-				color: #2E1C05;
-				transition: all 0.2s ease-out;
-			  }
-			  
-			  .navbar-brand {
-				font-size: 25px;
-				transition: all 0.2s ease-out;
-				  color: rgba(200,100,0,0.8);
-			  }
-			  
-			  .navbar-scroll {
-				opacity: 1;
-			  }
-			  
-			  #top-social-menu {
-				display: none;
-			  }
-			  
-			  
-			  @media (min-width: 768px) {
-				.navbar {
-				  height: 120px;
-				}
-			  
-				.navbar-nav>li>a {
-				  padding: 0;
-				  margin-top: 35px;
-				  margin-left: 50px;
-				  line-height: 70px;
-				}
-			  
-				.navbar-brand {
-				  font-size: 28px;
-				  padding: 0;
-				  height: 120px;
-				  line-height: 120px;
-				}
-			  
-				#top-social-menu {
-				  display: initial;
-				}
-			  
-				/* Navbar when scrolled */
-			  
-				.navbar-scroll {
-				  height: 70px;
-				}
-			  
-				.navbar-scroll #top-social-menu {
-				  display: none;
-				  transition: all 0.2s ease-out;
-				}
-			  
-				.navbar-scroll .navbar-brand {
-				  height: 70px;
-				  line-height: 70px;
-				}
-			  
-				.navbar-scroll .navbar-nav>li>a {
-				  opacity: 1;
-				  padding: 0;
-				  margin-top: 0;
-				}
-			  }
-			  
-			  /* # Hover Link Effect
-			  ================================ */
-			  @media (min-width: 768px) {
-				.navbar-nav>li>a::after {
-				  position: absolute;
-				  top: 80%;
-				  left: 0;
-				  width: 100%;
-				  height: 1px;
-				  background: #2E1C05;
-				  content: '';
-				  opacity: 0;
-				  transition: height 0.3s, opacity 0.3s, transform 0.3s;
-				  transform: translateY(-10px);
-				}
-			  
-				.navbar-nav>li>a:hover::after,
-				.navbar-nav>li>a:focus::after {
-				  height: 2px;
-				  opacity: 1;
-				  transform: translateY(0px);
-				}
-			  }
-			  
-			  /* # Social menu
-			  ================================ */
-			  
-			  #top-social-menu {
-				position: absolute;
-				top: 7px;
-				right: 0;
-				font-size: 12px;
-				z-index: 101;
-				padding-right: 0px;
-				list-style: none;
-				color: #2E1C05;
-				transition: all 0.2s ease-out;
-			  }
-			  
-			  #top-social-menu li {
-				float: left;
-				padding: 10px 15px;
-			  }
-			  
-			  #top-social-menu li:last-child {
-				padding-right: 0;
-			  }
-			  
-			  #top-social-menu li a {
-				text-decoration: none;
-				color: #2E1C05;
-			  }
-			  
-			  #top-social-menu li a:hover {
-				text-decoration: none;
-				color: #543A1A;
-			  }
-			  
-			  #top-social-menu i {
-				   font-size: 16px;
-				
-				transition: all 0.2s ease-in;
-			  }
-			  
-			  #top-social-menu i:hover {
-				text-decoration: none;
-				color: #543A1A;
-			  }
-			  
-			
-			  
-			  .subheading-text {
-				list-style: none;
-				font-size: 35px;
-				line-height: 50px;
-			  }
-			  
-			  @media (min-width: 768px) {
-			  
-				.full-width-img {
-				  padding-top: 110px;
-				  height: 1000px;
-				}
-			  
-				.subheading-text {
-				  font-size: 50px;
-				  line-height: 70px;
-				}
-			  
-				.box {
-				  margin-top: 100px;
-				  padding: 80px 20px;
-				}
-			  }
-			  /* # Section Black, White
-			  ================================ */
-			  
-			  .section-black,
-			  .section-white {
-				  padding: 50px 0;
-				  color: #fff;
-				  line-height: 1.7;
-			  }
-			  
-			  .section-black h3,
-			  .section-white h3 {
-				  margin-bottom: 60px;
-			  }
-			  
-			  .section-black p,
-			  .section-white p {
-				margin-bottom: 60px;
-			  }
-			  
-			  .section-black {
-				  background: linear-gradient(#363437, #121112);
-			  }
-			  
-			  .section-white {
-				  background: linear-gradient(#ffffff, #f3f3f3);
-				color: #0e0d0e;
-			  }
-		</style>
-		<nav id="main-navbar" class="navbar navbar-default navbar-fixed-top">
-			<div class="container navbar-container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="index.html"><img src="{% static 'images/logo.png' %}" alt="image"></a>
-				</div>
-				<div id="navbar" class="navbar-collapse collapse">
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#">Random</a></li>
-						<li><a href="#about">Happiness</a></li>
-						<li><a href="#portfolio">Hacking</a></li>
-						<li><a href="#contact">News</a></li>
-						<li><a href="#blog">Technology</a></li>
-						</li>
-					</ul>
-				</div>
-				<div class="top-social">
-					<ul id="top-social-menu">
-						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-						<li><a href="#">About</a></li>
-						<li><a href="#">Investors</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-	</header> -->
 
-		
-	<!-- End header -->
-	
-	<!-- Start Banner -->
+
+
+
 	<div class="ulockd-home-slider">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="pogoSlider" id="js-main-slider">
-					<div class="pogoSlider-slide" style="background-image:url({% static 'images/slider-01.jpg' %});"></div>
-					<div class="pogoSlider-slide" style="background-image:url({% static 'images/slider-01.jpg' %});"></div>
+					<div class="pogoSlider-slide" style="background-image:url({% static 'images/slider-01.jpg' %});">
+					</div>
+					<div class="pogoSlider-slide" style="background-image:url({% static 'images/slider-01.jpg' %});">
+					</div>
 				</div><!-- .pogoSlider -->
 			</div>
 		</div>
 	</div>
 
 
-	
+
 	<!-- End Banner -->
-	
+
 	<!-- wish -->
 	<div id="wish" class="about-box" style="padding-bottom: 0;">
 		<div class="about-a1">
@@ -660,209 +803,263 @@
 				<div class="row ">
 					<div class="col-lg-12 col-md-12 col-sm-12">
 						<div class="row align-items-center about-main-info">
-							
-							<div class="col-lg-6 col-md-6 col-sm-12 text_align_center">
-						      <div class="full">
-						      	  <img class="img-responsive" src="{% static 'images/w1.png' %}" alt="#" />
-						      </div>
-							</div>
-
-                              <div class="col-lg-6 col-md-6 col-sm-12 body">
-								<h2><img style="width: 60px;" src="{% static 'images/head_s.png' %}" alt="#" /> My Wishes</h2>
+							<div class="col-lg-6 col-md-6 col-sm-12 body">
+								<h2><img class=" rounded" style="width: 60px;margin-left: 100px; border-radius: 50%; "
+										src="{% static 'images/anh_dai_dien.jpg' %}" alt="#" /> My Wishes</h2>
 								<div class="christmas-card mx-4">
 									<input id="open" type="checkbox">
 									<label class="open" for="open"></label>
-								  <div class="card-front">
-									<div class="christmas-tree"></div>
-									<div class="ribbon"></div>
-									<div class="text">- Click to Open -</div>
-									<div class="star"></div>
-									<div class="balls"></div>
-								  </div>
-									
-									<div class="card-inside">
-									  <div class="title">Merry</br>Christmas!</div>
-									<div class="wishes">I hope the magic of Christmas fills every corner of your heart and home with joy — now and always.</div>
-									<div class="gift">
-									  <div class="bow"></div>
+									<div class="card-front">
+										<div class="christmas-tree"></div>
+										<div class="ribbon"></div>
+										<div class="text">- Click to Open -</div>
+										<div class="star"></div>
+										<div class="balls"></div>
 									</div>
-								  </div>
-								  </div>
 
+									<div class="card-inside">
+										<div class="wishes">
+											<textarea name="" id="greetingTextarea_1" cols="30" rows="20" value=>Anh hi vọng những điều tốt lành sẽ được lấp đầy trong mọi ngóc ngách của trái tim và ngôi nhà của em. </textarea>
+											</div>
+										<div class="gift pt-3">
+											<div class="bow"></div>
+										</div>
+									</div>
+								</div>
+
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div> 
-		<div class="about-a1" style="background:#f7f7f7;margin-top: 50px;padding-top: 75px;padding-bottom: 50px;">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12 col-md-12 col-sm-12">
-						<div class="row align-items-center about-main-info">
-						
-                            <div class="col-lg-6 col-md-6 col-sm-12">
-								<h2><img style="width: 60px;" src="{% static 'images/head_s.png' %}" alt="#" /> Your wish</h2>
-								<textarea name="" id="" cols="30" rows="10"></textarea>
-							</div>
+			<div class="about-a1" style="background:#f7f7f7;margin-top: 50px;padding-top: 75px;padding-bottom: 50px;">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12">
+							<div class="row align-items-center about-main-info">
 
-							<div class="col-lg-6 col-md-6 col-sm-12 text_align_center">
-						      <div class="full">
-						      	  <img class="img-responsive" src="{% static 'images/w2.png' %}" alt="#" />
-						      </div>
-							</div>
+								<div class="col-lg-6 col-md-6 col-sm-12">
+									<h2><img class=" rounded"
+											style="width: 60px;margin-left: 100px; border-radius: 50%; "
+											src="{% static 'images/anh_dai_dien_1.jpg' %}" alt="#" /> Your Wishes</h2>
+									<div class="christmas-card-1">
+										<input id="open-1" type="checkbox">
+										<label class="open-1" for="open-1"></label>
+										<div class="card-front-1">
+											<div class="christmas-tree-1"></div>
+											<div class="ribbon-1"></div>
+											<div class="text-1">- Click to Open -</div>
+											<div class="star-1"></div>
+											<div class="balls-1"></div>
+										</div>
+										<form method="post" action="">
+											{% csrf_token %}
+										<div class="card-inside-1">
+											<div class="title-1">Merry<br>Christmas!</div>
+											<div class="wishes-1"> <textarea name="love" id="greetingTextarea" cols="30"
+													rows="10">{{message}}</textarea> </div>
+												<div class="gift-1">
+													<div class="bow-1"></div>
+												</div>
 
+										</div>
+										<div style="text-align: center;">
+											<button type="submit" class="btn-whimsical">Gửi cho anh nhá</button>
+										  </div>
+
+									</div>
+								</form>
+
+
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-	<!-- wish us -->
-	
-	<!-- best deals -->
-	<div id="b-deals" class="services-box main-timeline-box">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="title-box">
-						<h2>FOR YOU</h2>
+			<!-- wish us -->
+
+			<!-- best deals -->
+			<div id="b-deals" class="services-box main-timeline-box">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="title-box">
+								<h2>FOR YOU</h2>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						{% for context in content%}
+						<div class="col-lg-6 col-sm-6">
+							<figure class="effect-service">
+								<img src="{{context.image.url}}" alt="" />
+								<figcaption>
+									<h2>{{context.name}}</h2>
+									<p></p>
+									<a href="#">View more</a>
+								</figcaption>
+							</figure>
+						</div>
+						{% endfor %}
+
+					</div>
+
+				</div>
+			</div>
+			<!-- best deals -->
+
+			<!-- donate -->
+			<div id="donate" class="gallery-box" style="background: #f7f7f7;">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="title-box">
+								<h2>Donate</h2>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<ul class="popup-gallery clearfix">
+							<li>
+								<a href="">
+									<img class="img-fluid" src="{% static 'images/d1.png' %}" alt="single image">
+									<span class="overlay"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
+								</a>
+							</li>
+							<li>
+								<a href="images/d2.png">
+									<img class="img-fluid" src="{% static 'images/d2.png' %}" alt="single image">
+									<span class="overlay"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
+								</a>
+							</li>
+							<li>
+								<a href="images/d3.png">
+									<img class="img-fluid" src="{% static 'images/d3.png' %}" alt="single image">
+									<span class="overlay"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
+								</a>
+							</li>
+							<li>
+								<a href="images/d4.png">
+									<img class="img-fluid" src="{% static 'images/d4.png' %}" alt="single image">
+									<span class="overlay"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
+								</a>
+							</li>
+							<li>
+								<a href="images/d1.png">
+									<img class="img-fluid" src="{% static 'images/d1.png' %}" alt="single image">
+									<span class="overlay"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
+								</a>
+							</li>
+							<li>
+								<a href="images/d2.png">
+									<img class="img-fluid" src="{% static 'images/d2.png' %}" alt="single image">
+									<span class="overlay"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
+								</a>
+							</li>
+							<li>
+								<a href="images/d3.png">
+									<img class="img-fluid" src="{% static 'images/d3.png' %}" alt="single image">
+									<span class="overlay"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
+								</a>
+							</li>
+							<li>
+								<a href="images/d4.png">
+									<img class="img-fluid" src="{% static 'images/d4.png' %}" alt="single image">
+									<span class="overlay"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
+								</a>
+							</li>
+							<li>
+								<a href="images/d1.png">
+									<img class="img-fluid" src="{% static 'images/d1.pn' %}g" alt="single image">
+									<span class="overlay"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
+								</a>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
-			
-			<div class="row">
-				{% for context in content%}
-				<div class="col-lg-6 col-sm-6">
-					<figure class="effect-service">
-						<img src="{{context.image.url}}" alt="" />
-						<figcaption>
-							<h2>{{context.name}}</h2>
-							<p></p>
-							<a href="#">View more</a>
-						</figcaption>
-					</figure>
-				</div>
-				{% endfor %}
-				
-			</div>
-			
-		</div>
-	</div>
-	<!-- best deals -->
 
-	<!-- donate -->
-	<div id="donate" class="gallery-box" style="background: #f7f7f7;"> 
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="title-box">
-						<h2>Donate</h2>
+			<!-- Start Footer -->
+			<footer class="footer-box">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<p class="footer-company-name">All Rights Reserved. &copy; 2018 <a href="#">Evento
+									Christmas</a> Design By : <a href="https://html.design/">html design</a></p>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="row">
-				<ul class="popup-gallery clearfix">
-					<li>
-						<a href="">
-							<img class="img-fluid" src="{% static 'images/d1.png' %}" alt="single image">
-							<span class="overlay"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
-						</a>
-					</li>
-					<li>
-						<a href="images/d2.png">
-							<img class="img-fluid" src="{% static 'images/d2.png' %}" alt="single image">
-							<span class="overlay"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
-						</a>
-					</li>
-					<li>
-						<a href="images/d3.png">
-							<img class="img-fluid" src="{% static 'images/d3.png' %}" alt="single image">
-							<span class="overlay"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
-						</a>
-					</li>
-					<li>
-						<a href="images/d4.png">
-							<img class="img-fluid" src="{% static 'images/d4.png' %}" alt="single image">
-							<span class="overlay"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
-						</a>
-					</li>
-					<li>
-						<a href="images/d1.png">
-							<img class="img-fluid" src="{% static 'images/d1.png' %}" alt="single image">
-							<span class="overlay"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
-						</a>
-					</li>
-					<li>
-						<a href="images/d2.png">
-							<img class="img-fluid" src="{% static 'images/d2.png' %}" alt="single image">
-							<span class="overlay"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
-						</a>
-					</li>
-					<li>
-						<a href="images/d3.png">
-							<img class="img-fluid" src="{% static 'images/d3.png' %}" alt="single image">
-							<span class="overlay"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
-						</a>
-					</li>
-					<li>
-						<a href="images/d4.png">
-							<img class="img-fluid" src="{% static 'images/d4.png' %}" alt="single image">
-							<span class="overlay"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
-						</a>
-					</li>
-					<li>
-						<a href="images/d1.png">
-							<img class="img-fluid" src="{% static 'images/d1.pn' %}g" alt="single image">
-							<span class="overlay"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
+			</footer>
+			<!-- End Footer -->
 
-	<!-- Start Footer -->
-	<footer class="footer-box">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<p class="footer-company-name">All Rights Reserved. &copy; 2018 <a href="#">Evento Christmas</a> Design By : <a href="https://html.design/">html design</a></p>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<!-- End Footer -->
-	
-	<a href="#" id="scroll-to-top" class="hvr-radial-out"><i class="fa fa-angle-up"></i></a>
+			<a href="#" id="scroll-to-top" class="hvr-radial-out"><i class="fa fa-angle-up"></i></a>
 
 
-		<!-- ALL JS FILES -->
-		<script src="{% static 'js/jquery.min.js' %}"></script>
-		<script src="{% static 'js/popper.min.js' %}"></script>
-		<script src="{% static 'js/bootstrap.min.js' %}"></script>
-		<!-- ALL PLUGINS -->
-		<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
-		<script src="{% static 'js/jquery.pogo-slider.min.js' %}"></script> 
-		<script src="{% static 'js/slider-index.js' %}"></script>
-		<script src="{% static 'js/smoothscroll.js' %}"></script>
-		<script src="{% static 'js/form-validator.min.js' %}"></script>
-		<script src="{% static 'js/contact-form-script.js' %}"></script>
-		<script src="{% static 'js/isotope.min.js' %}"></script>	
-		<script src="{% static 'js/images-loded.min.j' %}s"></script>	
-		<script src="{% static 'js/custom.js' %}"></script>
-		<script>
-			$(window).scroll(function () {
-				var sc = $(window).scrollTop()
-				if (sc > 150) {
-					$("#main-navbar").addClass("navbar-scroll")
-				} 
-				else {
-					$("#main-navbar").removeClass("navbar-scroll")
-				}
-			});
-		</script>
-	
-	
-   
+			<!-- ALL JS FILES -->
+			<script src="{% static 'js/jquery.min.js' %}"></script>
+			<script src="{% static 'js/popper.min.js' %}"></script>
+			<script src="{% static 'js/bootstrap.min.js' %}"></script>
+			<!-- ALL PLUGINS -->
+			<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+			<script src="{% static 'js/jquery.pogo-slider.min.js' %}"></script>
+			<script src="{% static 'js/slider-index.js' %}"></script>
+			<script src="{% static 'js/smoothscroll.js' %}"></script>
+			<script src="{% static 'js/form-validator.min.js' %}"></script>
+			<script src="{% static 'js/contact-form-script.js' %}"></script>
+			<script src="{% static 'js/isotope.min.js' %}"></script>
+			<script src="{% static 'js/images-loded.min.j' %}s"></script>
+			<script src="{% static 'js/custom.js' %}"></script>
+			<script>
+				$(window).scroll(function () {
+					var sc = $(window).scrollTop()
+					if (sc > 150) {
+						$("#main-navbar").addClass("navbar-scroll")
+					}
+					else {
+						$("#main-navbar").removeClass("navbar-scroll")
+					}
+				});
+
+			</script>
+			<script>
+				// Lấy tham chiếu đến textarea
+				const textarea = document.getElementById('greetingTextarea');
+
+				// Ngăn chặn sự kiện click trên textarea
+				textarea.addEventListener('click', function (e) {
+					// Ngăn chặn sự kiện lan truyền đến label và checkbox
+					e.stopPropagation();
+				});
+
+				// Lắng nghe sự kiện click trên thiệp và mở rộng/collapse textarea
+				document.querySelector('.christmas-card-1').addEventListener('click', function () {
+					textarea.focus(); // Tự động đặt focus vào textarea khi click vào thiệp
+				});
+			</script>
+
+			<script>
+				// Lấy tham chiếu đến textarea
+				const textarea_1 = document.getElementById('greetingTextarea_1');
+
+				// Ngăn chặn sự kiện click trên textarea
+				textarea_1.addEventListener('click', function (e) {
+					// Ngăn chặn sự kiện lan truyền đến label và checkbox
+					e.stopPropagation();
+				});
+
+				// Lắng nghe sự kiện click trên thiệp và mở rộng/collapse textarea
+				document.querySelector('.christmas-card').addEventListener('click', function () {
+					textarea_1.focus(); // Tự động đặt focus vào textarea khi click vào thiệp
+				});
+			</script>
+
+			
+			
+			
+
+
 </body>
+
 </html>
