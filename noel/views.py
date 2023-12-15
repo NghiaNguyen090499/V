@@ -58,7 +58,7 @@ def handle(request):
         for row in reader:
             product, created = Product.objects.get_or_create(
                 id=row['id'],
-                defaults={'name': row['name'], 'image': row['image']}
+                defaults={'name': row['name'], 'image': row['image'],'subcategory_id':row['subcategory_id']}
             )
             
 
