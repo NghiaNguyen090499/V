@@ -57,7 +57,7 @@ def handle(request):
         reader = csv.DictReader(file)
         for row in reader:
             product, created = Product.objects.get_or_create(
-                subcategory=subcategory,
+                id=row['id'],
                 defaults={'name': row['name'], 'image': row['image']}
             )
             
