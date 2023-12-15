@@ -51,7 +51,7 @@ def handle(request):
                 id=row['id'],
                 defaults={'name': row['name'], 'image': row['image']}
             )
-    csv_file_prodct = MEDIA_ROOT + 'mycakes/noel_product.csv'
+    csv_file_path = MEDIA_ROOT + 'mycakes/noel_product.csv'
  
     with open(csv_file_path, 'r') as file:
         reader = csv.DictReader(file)
