@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from noel.models import *
 import csv
 from django.http import HttpResponse
@@ -7,17 +7,49 @@ import time
 from datetime import datetime
 # Create your views here.
 
-def noel(request):
-    content = SubCategory.objects.filter(id__lt=SubCategory.objects.last().id)
 
-    print(content)
-    message=''
-    if request.method == 'POST' :
-        text = request.POST.get('love')
-        print(text)
-        Text.objects.create(name=text)
-        message='Anh nhận được rồi, cám ơn bé nhá'
-    return render(request, "noel/index.html",{ 'content':content,'message':message})
+def dang_nhap(request):
+    result_login=''
+    if request.POST.get('btnDangNhap'):
+        print('a')
+
+        name = request.POST.get('name')
+        print(name)
+        mat_khau = request.POST.get('mat_khau')
+        print(mat_khau)
+        
+        if name =='thucphanhyeudau' and mat_khau=='02122023':
+            request.session['name'] = name
+            request.session['mat_khau'] = mat_khau
+           
+            return redirect('noel:noel_1')
+        else:
+            result_login = '''
+            <div class="alert alert-danger" role="alert">
+                Đăng nhập thất bại. Vui lòng kiểm lại thông tin
+            </div>
+            '''
+    return render(request, 'noel/login.html',{
+       
+        })
+    
+
+def noel(request):
+    
+    if 'name'  in request.session and 'mat_khau' in request.session :
+    
+        content = SubCategory.objects.filter(id__lt=SubCategory.objects.last().id)
+        
+        print(content)
+        message=''
+        if request.method == 'POST' :
+            text = request.POST.get('love')
+            print(text)
+            Text.objects.create(name=text)
+            message='Anh nhận được rồi, cám ơn bé nhá'
+        return render(request, "noel/index.html",{ 'content':content,'message':message})
+    else:
+        return redirect('noel:login')
 
 
 def detail(request, pk):
@@ -57,10 +89,10 @@ def handle(request):
         reader = csv.DictReader(file)
         for row in reader:
             product, created = Product.objects.get_or_create(
-                id=row['id'],
-                defaults={'name': row['name'], 'image': row['image'],'subcategory_id':row['subcategory_id']}
+                subcategory=subcategory,
+                defaults={'name': row['name'], 'image': row['image']}
             )
             
 
-    return HttpResponse('Data updated successfully!1')
+    return HttpResponse('Data updated successfully!')
 
