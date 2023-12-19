@@ -4,6 +4,7 @@ app_name = 'noel'
 urlpatterns = [
    path('noel', noel, name='noel_1'),
    path('detail/<int:pk>/',detail, name='detail'),
-   path('test',handle, name='a'),
+   path('a',handle, name='a'),
+   path('login',dang_nhap, name='login'),
  
 ]
