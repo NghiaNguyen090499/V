@@ -39,6 +39,7 @@ def noel(request):
     if 'name'  in request.session and 'mat_khau' in request.session :
     
         content = SubCategory.objects.filter(id__lt=SubCategory.objects.last().id)
+        now = Product.objects.filter(subcategory_id=7)
         
         print(content)
         message=''
@@ -47,7 +48,7 @@ def noel(request):
             print(text)
             Text.objects.create(name=text)
             message='Anh nhận được rồi, cám ơn bé nhá'
-        return render(request, "noel/index.html",{ 'content':content,'message':message})
+        return render(request, "noel/index.html",{ 'content':content,'message':message,'now':now})
     else:
         return redirect('noel:login')
 
@@ -89,10 +90,34 @@ def handle(request):
         reader = csv.DictReader(file)
         for row in reader:
             product, created = Product.objects.get_or_create(
-                subcategory=subcategory,
-                defaults={'name': row['name'], 'image': row['image']}
+                id=row['id'],
+                defaults={'name': row['name'], 'image': row['image'],'subcategory_id':row['subcategory_id']}
             )
             
 
     return HttpResponse('Data updated successfully!')
+
+
+
+# views.py
+
+from .models import Achievement
+from .forms import AchievementFormSet
+
+
+
+
+def checklist(request):
+    
+    if request.method == 'POST':
+        formset = AchievementFormSet(request.POST, queryset=Achievement.objects.all())
+        print(formset)
+        if formset.is_valid():
+            formset.save()
+    else:
+        formset = AchievementFormSet(queryset=Achievement.objects.all())
+
+    return render(request, 'noel/checklist.html', {'formset': formset})
+
+ 
 
