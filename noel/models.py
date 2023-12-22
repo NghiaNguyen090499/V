@@ -24,3 +24,13 @@ class Product(models.Model):
     
 class Text(models.Model):
     name = models.CharField(max_length=250)
+
+
+from django.db import models
+
+class Achievement(models.Model):
+    description = models.CharField(max_length=255)
+    completed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.description
