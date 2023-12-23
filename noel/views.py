@@ -40,6 +40,7 @@ def noel(request):
     
         content = SubCategory.objects.filter(id__lt=SubCategory.objects.last().id)
         now = Product.objects.filter(subcategory_id=7)
+        print(now)
         
         print(content)
         message=''
@@ -51,6 +52,8 @@ def noel(request):
         return render(request, "noel/index.html",{ 'content':content,'message':message,'now':now})
     else:
         return redirect('noel:login')
+    
+    
 
 
 def detail(request, pk):
